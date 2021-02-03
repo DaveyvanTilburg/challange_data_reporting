@@ -14,6 +14,7 @@ Translated into my own words, the challange includes the following:
  On top of this I would like to add:
  - Data source and website should be a detail to the domain (union?)
  - Have 100% test coverage for the domain
+ - Add design
  
  Things I deem out of scope
  - Everything regarding presentation
