@@ -1,6 +1,4 @@
-using System;
-
-namespace challange_data_reporting.Models
+namespace Website.Models
 {
     public class ErrorViewModel
     {
