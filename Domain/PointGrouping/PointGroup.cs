@@ -4,19 +4,22 @@ namespace Domain.PointGrouping
 {
     public class PointGroup<T>
     {
-        private readonly IEnumerable<T> _data;
-        private readonly string _period;
+        private readonly List<T> _data;
+        private readonly string _pointCategory;
 
-        public PointGroup(IEnumerable<T> data, string period)
+        public PointGroup(string pointCategory)
         {
-            _data = data;
-            _period = period;
+            _data = new List<T>();
+            _pointCategory = pointCategory;
         }
 
+        public void Add(T item)
+            => _data.Add(item);
+        
         public IEnumerable<T> Data()
             => new List<T>(_data);
 
-        public string Period()
-            => _period;
+        public string PointCategory()
+            => _pointCategory;
     }
 }

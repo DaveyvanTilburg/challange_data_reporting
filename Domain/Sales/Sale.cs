@@ -7,12 +7,14 @@ namespace Domain.Sales
     public class Sale : IDateGroupable, ITypeGroupable
     {
         private readonly Lazy<string[]> _sections;
+        private readonly Lazy<DateTime> _date;
 
         private const char Separator = ';';
         
         public Sale(string data)
         {
             _sections = new Lazy<string[]>(() => Sections(data));
+            _date = new Lazy<DateTime>(Date());
         }
 
         private string[] Sections(string data)
@@ -41,19 +43,25 @@ namespace Domain.Sales
         }
 
         public decimal TotalValue()
-            => Quantity() * Price();
+            => Price();
+
+        public decimal AverageValue()
+            => Price() / Quantity();
         
-        DateTime IDateGroupable.Date()
+        private DateTime Date()
         {
             if (!DateTime.TryParseExact(
-                    Section(3), 
-                    "yyyy-MM-dd", 
-                    System.Globalization.CultureInfo.InvariantCulture, 
-                    System.Globalization.DateTimeStyles.None, 
-                    out DateTime date))
+                Section(3),
+                "yyyy-MM-dd",
+                System.Globalization.CultureInfo.InvariantCulture,
+                System.Globalization.DateTimeStyles.None,
+                out DateTime date))
                 throw new Exception($"Invalid date value: {Section(3)}");
 
             return date;
         }
+
+        DateTime IDateGroupable.Date()
+            => _date.Value;
     }
 }

@@ -29,7 +29,7 @@ namespace Domain.Sales
 
             foreach (LinePointsGroup<Sale> typePeriodGroup in input)
                 foreach (PointGroup<Sale> periodGroup in typePeriodGroup.Data())
-                pointCategories.Add(periodGroup.Period());
+                pointCategories.Add(periodGroup.PointCategory());
 
             pointCategories = pointCategories.Distinct().ToList();
             
