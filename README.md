@@ -20,6 +20,7 @@ This project is created in response to a challange where you have to solve a pro
  - Data source and website should be a detail to the domain (union?)
  - Have 100% test coverage for the domain
  - Add design
+ - Changed a few dates in the sales.csv to have data over multiple years, I saw that only 2018 is in the data set, slightly increases the challange for grouping per period
  
 ### Things I deem out of scope
  - Everything regarding presentation
