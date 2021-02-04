@@ -41,6 +41,33 @@ namespace Domain.UnitTests
         }
 
         [Fact]
+        public void SalesByTypePerMonthTotalValue()
+        {
+            var subject = new SaleTotalValueGrouping(
+                new GroupByMonth<Sale>(
+                    new GroupByType<Sale>(
+                        new MockedDataSource()
+                    )
+                )
+            );
+
+            Chart chart = subject.Chart();
+
+            chart.PointCategories.Count().Should().Be(2);
+
+            foreach (ChartLine chartLine in chart.ChartLines)
+                chartLine.Data.Length.Should().Be(2);
+
+            chart.PointCategories.First().Should().Be("2");
+            chart.PointCategories.Last().Should().Be("3");
+
+            chart.ChartLines.ElementAt(0).Data.Should().BeEquivalentTo(new[] { 0, 5309 });
+            chart.ChartLines.ElementAt(1).Data.Should().BeEquivalentTo(new[] { 0, 2687 });
+            chart.ChartLines.ElementAt(2).Data.Should().BeEquivalentTo(new[] { 0, 11729 });
+            chart.ChartLines.ElementAt(3).Data.Should().BeEquivalentTo(new[] { 37893, 0 });
+        }
+
+        [Fact]
         public void LoadTest()
         {
             var subject = new SaleTotalValueGrouping(
