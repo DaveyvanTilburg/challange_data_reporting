@@ -1,4 +1,4 @@
-This project is created in response to a challange where you have to solve a problem in a reasonably short time.
+This project is created in response to a challange where you have to solve a problem in a reasonable amount of time. Though I have given quite a huge twist to the content of the challange because I think it is fun. I wish to both enjoy my time working on this small project and learn from the experience as much as possible by giving myself a few extra challanges regarding design.
 
 ### Translated into my own words, the challange includes the following:
  - From a data source ([data](Infrastructure/MockedData/sales.csv) supplied in csv) create an overview per month that shows the performence of a product per month.
