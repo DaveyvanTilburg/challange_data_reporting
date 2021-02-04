@@ -13,9 +13,9 @@ Translated into my own words, the challange includes the following:
  
  On top of this I would like to add:
  - Design requires the following quality attribute scenarios:
-  - Modifiability
-   - Scenario: If a request arives to add a new type of point or value grouping. The development takes no more than 30 minutes, including the addition of UnitTests.
-    - To validate this scenario, once everything is done, I will add a new period grouping type based on day of week
+   - Modifiability:
+     - Scenario: If a request arives to add a new type of point or value grouping. The development takes no more than 30 minutes, including the addition of UnitTests
+       - To validate this scenario, once everything is done, I will add a new period grouping type based on day of week
  - Data source and website should be a detail to the domain (union?)
  - Have 100% test coverage for the domain
  - Add design
