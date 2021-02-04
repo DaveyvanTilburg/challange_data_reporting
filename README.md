@@ -1,3 +1,5 @@
+# Description
+
 This project is created in response to a challange where you have to solve a problem in a reasonable amount of time. Though I have given quite a huge twist to the content of the challange because I think it is fun. I wish to both enjoy my time working on this small project and learn from the experience as much as possible by giving myself a few extra challanges regarding design.
 
 ### Translated into my own words, the challange includes the following:
@@ -24,3 +26,11 @@ This project is created in response to a challange where you have to solve a pro
  
 ### Things I deem out of scope
  - Everything regarding presentation
+
+# Documentation
+
+The gist of it is that if the domain is presentation of data with the above mentioned quality attributes, I think it is important to have an architecture that represents interchangability of components in the alghorythm that creates the data set.
+
+This UML only described the first version of the result, but the idea is that anything separated by an interface encapsulates a different responsibility. So extending the functionality means to only create a new implementation and using it in the composition:
+
+![UML](Documentation/Overview.jpg)
