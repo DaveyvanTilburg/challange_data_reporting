@@ -18,7 +18,7 @@ Translated into my own words, the challange includes the following:
        - To validate this scenario, once everything is done, I will add a new period grouping type based on day of week
    - Performence:
      - Scenario: Generating the source for the full 10K load should not take more than 200ms
-       - To validate this, I will add a unit tests
+       - To validate this, I will add a unit tests. This is not the most accurate way to validate this as it is system dependend, but it works for now
  - Data source and website should be a detail to the domain (union?)
  - Have 100% test coverage for the domain
  - Add design
