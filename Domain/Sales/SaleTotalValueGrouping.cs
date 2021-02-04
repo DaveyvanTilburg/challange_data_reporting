@@ -27,11 +27,8 @@ namespace Domain.Sales
         {
             var pointCategories = new List<string>();
 
-            foreach (LinePointsGroup<Sale> typePeriodGroup in input)
-                foreach (PointGroup<Sale> periodGroup in typePeriodGroup.Data())
+            foreach (PointGroup<Sale> periodGroup in input.First().Data())
                 pointCategories.Add(periodGroup.PointCategory());
-
-            pointCategories = pointCategories.Distinct().ToList();
             
             return pointCategories;
         }
@@ -40,7 +37,7 @@ namespace Domain.Sales
         {
             var chartLines = new List<ChartLine>();
             
-            foreach (LinePointsGroup<Sale> typePeriodGroup in input)
+            foreach (LinePointsGroup<Sale> typePeriodGroup in input.OrderBy(i => i.Type()))
             {
                 var linePoints = new List<int>();
                 foreach (PointGroup<Sale> periodGroup in typePeriodGroup.Data())

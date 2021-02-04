@@ -5,7 +5,7 @@ using Domain.Sales;
 
 namespace Domain.UnitTests
 {
-    internal class DataSource : IDataSource<Sale>
+    internal class MockedDataSource : IDataSource<Sale>
     {
         public IEnumerable<Sale> Data()
         {
