@@ -9,9 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="MockedData\sales.csv">
+    <EmbeddedResource Include="MockedData\sales.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

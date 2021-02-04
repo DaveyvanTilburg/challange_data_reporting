@@ -1,20 +1,31 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Domain.Charts
 {
     public class Chart
     {
-        internal IEnumerable<ChartLine> ChartLines { get; }
-        internal IEnumerable<string> PointCategories { get; }
+        public IEnumerable<ChartLine> ChartLines { get; }
+        public IEnumerable<string> PointCategories { get; }
+        public string Title { get; }
         
-        public Chart(IEnumerable<ChartLine> chartLines, IEnumerable<string> pointCategories)
+        public Chart(IEnumerable<ChartLine> chartLines, IEnumerable<string> pointCategories, string title)
         {
             ChartLines = chartLines;
             PointCategories = pointCategories;
+            Title = title;
         }
         
         public override string ToString()
-            => JsonConvert.SerializeObject(this);
+        {
+            var serializerSettings = new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
+            string result = JsonConvert.SerializeObject(this, serializerSettings);
+            return result;
+        }
     }
 }

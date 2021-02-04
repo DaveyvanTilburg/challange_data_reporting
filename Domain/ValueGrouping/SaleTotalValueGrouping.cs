@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Domain.Charts;
 using Domain.PointGrouping;
+using Domain.Sales;
 
-namespace Domain.Sales
+namespace Domain.ValueGrouping
 {
-    public class SaleTotalValueGrouping
+    public class SaleTotalValueGrouping : IValueGrouping
     {
         private readonly IPointGrouping<Sale> _pointGrouping;
+
+        private const string Title = "Total sales value";
         
         public SaleTotalValueGrouping(IPointGrouping<Sale> pointGrouping)
         {
@@ -18,7 +21,7 @@ namespace Domain.Sales
         public Chart Chart()
         {
             IEnumerable<LinePointsGroup<Sale>> input = _pointGrouping.Groups();
-            var chart = new Chart(ChartLines(input), PointCategories(input));
+            var chart = new Chart(ChartLines(input), PointCategories(input), Title);
             
             return chart;
         }

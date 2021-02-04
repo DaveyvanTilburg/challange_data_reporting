@@ -2,19 +2,13 @@
 {
     public class ChartLine
     {
-        private readonly string _type;
-        private readonly int[] _values;
+        public string Name { get; }
+        public int[] Data { get; }
 
-        public ChartLine(string type, int[] values)
+        public ChartLine(string name, int[] data)
         {
-            _type = type;
-            _values = values;
+            Name = name;
+            Data = data;
         }
-        
-        public string Type()
-            => _type;
-
-        public int[] Values()
-            => _values;
     }
 }

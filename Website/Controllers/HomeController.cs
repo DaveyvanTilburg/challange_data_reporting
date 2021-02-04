@@ -1,4 +1,9 @@
 ﻿using System.Diagnostics;
+using Domain.LineGrouping;
+using Domain.PointGrouping;
+using Domain.Sales;
+using Domain.ValueGrouping;
+using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Website.Models;
@@ -16,12 +21,13 @@ namespace Website.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            return View(new SaleTotalValueGrouping(
+                new GroupPerWeek<Sale>(
+                    new GroupByType<Sale>(
+                        new SaleDataSource()
+                    )
+                )
+            ));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
