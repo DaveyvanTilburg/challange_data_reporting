@@ -31,4 +31,6 @@ This project is created in response to a challange where you have to solve a pro
 
 The gist of it is that if the domain is presentation of data with the above mentioned quality attributes, I think it is important to have an architecture that represents interchangability of components in the alghorythm that creates the data set.
 
+This UML only described the first version of the result, but the idea is that anything separated by an interface encapsulates a different responsibility. So extending the functionality means to only create a new implementation and using it in the composition:
+
 ![UML](Documentation/Overview.jpg)
