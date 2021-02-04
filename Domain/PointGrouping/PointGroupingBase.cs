@@ -13,10 +13,10 @@ namespace Domain.PointGrouping
             _lineGrouping = lineGrouping;
         }
 
-        public IEnumerable<LinePointsGroup<T>> Groups()
+        public IEnumerable<LinePointsGroup<T>> PointGroups()
         {
             IEnumerable<LineGroup<T>> input = _lineGrouping.LineGroups();
-            IEnumerable<int> linePoints = LinePoints(input);
+            IEnumerable<string> linePoints = LinePoints(input);
 
             var result = new List<LinePointsGroup<T>>();
             foreach (LineGroup<T> lineGroup in input)
@@ -25,11 +25,11 @@ namespace Domain.PointGrouping
             return result;
         }
 
-        protected abstract IEnumerable<int> LinePoints(IEnumerable<LineGroup<T>> input);
+        protected abstract IEnumerable<string> LinePoints(IEnumerable<LineGroup<T>> input);
 
-        private LinePointsGroup<T> LinePointsGroup(LineGroup<T> lineGroup, IEnumerable<int> linePointsWeeks)
+        private LinePointsGroup<T> LinePointsGroup(LineGroup<T> lineGroup, IEnumerable<string> linePointsWeeks)
         {
-            Dictionary<int, PointGroup<T>> linePoints = LinePointsTemplate(linePointsWeeks);
+            Dictionary<string, PointGroup<T>> linePoints = LinePointsTemplate(linePointsWeeks);
 
             foreach (T item in lineGroup.Data())
                 linePoints[ItemKey(item)].Add(item);
@@ -37,14 +37,14 @@ namespace Domain.PointGrouping
             return new LinePointsGroup<T>(linePoints.Values.AsEnumerable(), lineGroup.Type());
         }
 
-        protected abstract int ItemKey(T item);
+        protected abstract string ItemKey(T item);
 
-        private Dictionary<int, PointGroup<T>> LinePointsTemplate(IEnumerable<int> linePoints)
+        private Dictionary<string, PointGroup<T>> LinePointsTemplate(IEnumerable<string> linePoints)
         {
-            var template = new Dictionary<int, PointGroup<T>>();
+            var template = new Dictionary<string, PointGroup<T>>();
 
-            foreach (int linePoint in linePoints)
-                template.Add(linePoint, new PointGroup<T>(linePoint.ToString()));
+            foreach (string linePoint in linePoints)
+                template.Add(linePoint, new PointGroup<T>(linePoint));
 
             return template;
         }

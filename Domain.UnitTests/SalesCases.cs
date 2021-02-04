@@ -31,8 +31,8 @@ namespace Domain.UnitTests
             foreach (ChartLine chartLine in chart.ChartLines)
                 chartLine.Data.Length.Should().Be(9);
 
-            chart.PointCategories.First().Should().Be("5");
-            chart.PointCategories.Last().Should().Be("13");
+            chart.PointCategories.First().Should().Be("2018-5");
+            chart.PointCategories.Last().Should().Be("2018-13");
 
             chart.ChartLines.ElementAt(0).Data.Should().BeEquivalentTo(new[] { 0, 0, 0, 0, 0, 0, 0, 2655, 2655 });
             chart.ChartLines.ElementAt(1).Data.Should().BeEquivalentTo(new[] { 0, 0, 0, 0, 0, 0, 2687, 0, 0 });
@@ -58,8 +58,8 @@ namespace Domain.UnitTests
             foreach (ChartLine chartLine in chart.ChartLines)
                 chartLine.Data.Length.Should().Be(2);
 
-            chart.PointCategories.First().Should().Be("2");
-            chart.PointCategories.Last().Should().Be("3");
+            chart.PointCategories.First().Should().Be("2018-2");
+            chart.PointCategories.Last().Should().Be("2018-3");
 
             chart.ChartLines.ElementAt(0).Data.Should().BeEquivalentTo(new[] { 0, 5309 });
             chart.ChartLines.ElementAt(1).Data.Should().BeEquivalentTo(new[] { 0, 2687 });

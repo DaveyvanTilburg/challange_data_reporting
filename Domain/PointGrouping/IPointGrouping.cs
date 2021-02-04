@@ -4,6 +4,6 @@ namespace Domain.PointGrouping
 {
     public interface IPointGrouping<T> where T : IDateGroupable
     {
-        IEnumerable<LinePointsGroup<T>> Groups();
+        IEnumerable<LinePointsGroup<T>> PointGroups();
     }
 }

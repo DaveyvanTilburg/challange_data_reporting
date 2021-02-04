@@ -9,28 +9,36 @@ namespace Domain.PointGrouping
     public class GroupByWeek<T> : PointGroupingBase<T> where T : class, IDateGroupable, ITypeGroupable
     {
         public GroupByWeek(ILineGrouping<T> lineGrouping) : base(lineGrouping) { }
-        
-        private static int WeekNumber(DateTime date)
-            =>  CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
 
-        protected override IEnumerable<int> LinePoints(IEnumerable<LineGroup<T>> input)
+        protected override IEnumerable<string> LinePoints(IEnumerable<LineGroup<T>> input)
         {
-            var allItems = input.SelectMany(l => l.Data());
+            List<T> allItems = input.SelectMany(l => l.Data()).ToList();
 
-            DateTime min = allItems.Min(i => i.Date());
-            DateTime max = allItems.Max(i => i.Date());
+            DateTime min = StartOfWeek(allItems.Min(i => i.Date()));
+            DateTime max = StartOfWeek(allItems.Max(i => i.Date()));
 
-            int minWeekNumber = WeekNumber(min);
-            int maxWeekNumber = WeekNumber(max);
+            int weeks = (int)Math.Ceiling((max - min).TotalDays / 7);
 
-            int weeks = maxWeekNumber - minWeekNumber;
-
-            IEnumerable<int> weekNumberRange = Enumerable.Range(minWeekNumber, weeks + 1);
-
-            return weekNumberRange;
+            var linePoints = new List<string>();
+            for (int i = 0; i <= weeks; i++)
+                linePoints.Add(Key(StartOfWeek(min.AddDays(i * 7))));
+            
+            return linePoints.Distinct().ToList();
         }
 
-        protected override int ItemKey(T item)
-            => WeekNumber(item.Date());
+        protected override string ItemKey(T item)
+            => Key(StartOfWeek(item.Date()));
+        
+        private static string Key(DateTime date)
+            => $"{date.Year}-{WeekNumber(date)}";
+
+        private static int WeekNumber(DateTime date)
+            => CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+
+        public static DateTime StartOfWeek(DateTime date)
+        {
+            int difference = (7 + (date.DayOfWeek - DayOfWeek.Sunday)) % 7;
+            return date.AddDays(-1 * difference).Date;
+        }
     }
 }

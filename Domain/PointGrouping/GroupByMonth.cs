@@ -9,24 +9,29 @@ namespace Domain.PointGrouping
     {
         public GroupByMonth(ILineGrouping<T> lineGrouping) : base(lineGrouping) { }
         
-        protected override IEnumerable<int> LinePoints(IEnumerable<LineGroup<T>> input)
+        protected override IEnumerable<string> LinePoints(IEnumerable<LineGroup<T>> input)
         {
             var allItems = input.SelectMany(l => l.Data());
 
             DateTime min = allItems.Min(i => i.Date());
             DateTime max = allItems.Max(i => i.Date());
 
-            int minMonthNumber = min.Month;
-            int maxMonthNumber = max.Month;
+            var months = (max.Year - min.Year) * 12 + max.Month - min.Month;
 
-            int months = maxMonthNumber - minMonthNumber;
+            var linePoints = new List<string>();
+            for (int i = 0; i <= months; i++)
+            {
+                DateTime cursor = min.AddMonths(i);
+                linePoints.Add(Key(cursor));
+            }
 
-            IEnumerable<int> monthNumberRange = Enumerable.Range(minMonthNumber, months + 1);
-
-            return monthNumberRange;
+            return linePoints;
         }
 
-        protected override int ItemKey(T item)
-            => item.Date().Month;
+        protected override string ItemKey(T item)
+            => Key(item.Date());
+
+        private string Key(DateTime date)
+            => $"{date.Year}-{date.Month}";
     }
 }
