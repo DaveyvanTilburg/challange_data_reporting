@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Domain.Charts;
 using Domain.PointGrouping;
-using Domain.Sales;
 
 namespace Domain.ValueGrouping
 {

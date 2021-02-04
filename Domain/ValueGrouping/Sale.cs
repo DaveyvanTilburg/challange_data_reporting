@@ -2,7 +2,7 @@
 using Domain.LineGrouping;
 using Domain.PointGrouping;
 
-namespace Domain.Sales
+namespace Domain.ValueGrouping
 {
     public class Sale : IDateGroupable, ITypeGroupable
     {

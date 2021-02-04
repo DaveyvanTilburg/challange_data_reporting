@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using Domain.LineGrouping;
 using Domain.PointGrouping;
-using Domain.Sales;
 using Domain.ValueGrouping;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;

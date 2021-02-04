@@ -3,7 +3,7 @@ using System.Linq;
 using Domain.Charts;
 using Domain.LineGrouping;
 using Domain.PointGrouping;
-using Domain.Sales;
+using Domain.UnitTests.LineGrouping;
 using Domain.ValueGrouping;
 using FluentAssertions;
 using Infrastructure;

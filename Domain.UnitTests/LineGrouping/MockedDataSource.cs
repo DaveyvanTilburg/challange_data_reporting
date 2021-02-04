@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Domain.Sales;
+using Domain.ValueGrouping;
 
-namespace Domain.UnitTests
+namespace Domain.UnitTests.LineGrouping
 {
     internal class MockedDataSource : IDataSource<Sale>
     {
