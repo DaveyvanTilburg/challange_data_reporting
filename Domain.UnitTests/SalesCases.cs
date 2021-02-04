@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using Domain.Charts;
 using Domain.LineGrouping;
 using Domain.PointGrouping;
@@ -49,7 +50,11 @@ namespace Domain.UnitTests
                 )
             );
 
+            var stopwatch = Stopwatch.StartNew();
             subject.Chart();
+            stopwatch.Stop();
+
+            stopwatch.ElapsedMilliseconds.Should().BeLessOrEqualTo(200);
         }
     }
 }
