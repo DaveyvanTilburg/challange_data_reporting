@@ -9,6 +9,12 @@ using Website.Models;
 
 namespace Website.Controllers
 {
+    //Todo
+    //Add support for average value per type per point
+    //Add support for switching between difference point grouping types
+    
+    //Then when that all is done, the benchmark for the design will be: Add support for point grouping by day of week
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
