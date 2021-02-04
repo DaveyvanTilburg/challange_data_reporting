@@ -17,7 +17,7 @@ namespace Domain.UnitTests
         public void SalesByTypePerWeekTotalValue()
         {
             var subject = new SaleTotalValueGrouping(
-                new GroupPerWeek<Sale>(
+                new GroupByWeek<Sale>(
                     new GroupByType<Sale>(
                         new MockedDataSource()
                     )
@@ -44,7 +44,7 @@ namespace Domain.UnitTests
         public void LoadTest()
         {
             var subject = new SaleTotalValueGrouping(
-                new GroupPerWeek<Sale>(
+                new GroupByWeek<Sale>(
                     new GroupByType<Sale>(
                         new SaleDataSource()
                     )

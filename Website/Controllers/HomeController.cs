@@ -22,7 +22,7 @@ namespace Website.Controllers
         public IActionResult Index()
         {
             return View(new SaleTotalValueGrouping(
-                new GroupPerMonth<Sale>(
+                new GroupByMonth<Sale>(
                     new GroupByType<Sale>(
                         new SaleDataSource()
                     )

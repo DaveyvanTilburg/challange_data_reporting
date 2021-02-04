@@ -6,9 +6,9 @@ using Domain.LineGrouping;
 
 namespace Domain.PointGrouping
 {
-    public class GroupPerWeek<T> : PointGroupingBase<T> where T : class, IDateGroupable, ITypeGroupable
+    public class GroupByWeek<T> : PointGroupingBase<T> where T : class, IDateGroupable, ITypeGroupable
     {
-        public GroupPerWeek(ILineGrouping<T> lineGrouping) : base(lineGrouping) { }
+        public GroupByWeek(ILineGrouping<T> lineGrouping) : base(lineGrouping) { }
         
         private static int WeekNumber(DateTime date)
             =>  CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);

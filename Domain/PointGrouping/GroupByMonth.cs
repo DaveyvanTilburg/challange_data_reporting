@@ -5,9 +5,9 @@ using Domain.LineGrouping;
 
 namespace Domain.PointGrouping
 {
-    public class GroupPerMonth<T> : PointGroupingBase<T> where T : class, IDateGroupable, ITypeGroupable
+    public class GroupByMonth<T> : PointGroupingBase<T> where T : class, IDateGroupable, ITypeGroupable
     {
-        public GroupPerMonth(ILineGrouping<T> lineGrouping) : base(lineGrouping) { }
+        public GroupByMonth(ILineGrouping<T> lineGrouping) : base(lineGrouping) { }
         
         protected override IEnumerable<int> LinePoints(IEnumerable<LineGroup<T>> input)
         {
