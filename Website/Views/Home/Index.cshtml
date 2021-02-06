@@ -4,6 +4,21 @@
 }
 
 <div class="text-center">
+    <form method="POST">
+        <label for="pointGrouping">Period</label>
+        <select id="pointGrouping" name="pointGrouping">
+            <option value="byMonth">By month</option>
+            <option value="byWeek">By week</option>
+        </select><br/>
+        
+        <label for="valueGrouping">Value</label>
+        <select id="valueGrouping" name="valueGrouping">
+            <option value="totalValue">Total value</option>
+            <option value="averageValue">Average value</option>
+        </select>
+        <input type="submit" />
+    </form>
+    
     <div id="container"></div>
 </div>
 
@@ -16,11 +31,6 @@
     
     <script>
         const input = JSON.parse('@Html.Raw(Model.Chart().ToString())');
-
-        console.log(input);
-        console.log(input.pointCategories);
-        console.log(input.chartLines);
-        
         Highcharts.chart('container', {
             chart: {
                 type: 'line'

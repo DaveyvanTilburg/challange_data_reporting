@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Domain.LineGrouping;
 using Domain.PointGrouping;
 using Domain.ValueGrouping;
@@ -11,7 +12,6 @@ namespace Website.Controllers
 {
     //Todo
     //Add support for average value per type per point
-    //Add support for switching between difference point grouping types
     
     //Then when that all is done, the benchmark for the design will be: Add support for point grouping by day of week
     
@@ -24,21 +24,36 @@ namespace Website.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
+            => Chart("totalValue", "byMonth");
+
+        [HttpPost]
+        public IActionResult Index(string valueGrouping, string pointGrouping)
+            => Chart(valueGrouping, pointGrouping);
+        
+        private IActionResult Chart(string valueGrouping, string pointGrouping)
         {
-            return View(new SaleTotalValueGrouping(
-                new GroupByMonth<Sale>(
-                    new GroupByType<Sale>(
-                        new SaleDataSource()
-                    )
-                )
-            ));
+            ILineGrouping<Sale> lineGrouping =
+                new GroupByType<Sale>(
+                    new SaleDataSource()
+                );
+
+            IPointGrouping<Sale> salePointGrouping =
+                pointGrouping == "byMonth" ? (IPointGrouping<Sale>)new GroupByMonth<Sale>(lineGrouping) :
+                pointGrouping == "byWeek" ? new GroupByWeek<Sale>(lineGrouping) :
+                throw new Exception($"Unsupported value {pointGrouping}");
+
+            IValueGrouping saleValueGrouping =
+                valueGrouping == "totalValue" ? (IValueGrouping)new SaleTotalValueGrouping(salePointGrouping) :
+                valueGrouping == "averageValue" ? new SaleAverageValueGrouping(salePointGrouping) :
+                    throw new Exception($"Unsupported value {pointGrouping}");
+
+            return View(saleValueGrouping);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+            => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

@@ -34,7 +34,7 @@ namespace Domain.ValueGrouping
             return price;
         }
         
-        private int Quantity()
+        public int Quantity()
         {
             if (!int.TryParse(Section(2), out int quantity))
                 throw new Exception($"Invalid quantity value: {Section(2)}");
@@ -44,9 +44,6 @@ namespace Domain.ValueGrouping
 
         public decimal TotalValue()
             => Price();
-
-        public decimal AverageValue()
-            => Price() / Quantity();
         
         private DateTime Date()
         {
