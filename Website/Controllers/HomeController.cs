@@ -10,11 +10,6 @@ using Website.Models;
 
 namespace Website.Controllers
 {
-    //Todo
-    //Add support for average value per type per point
-    
-    //Then when that all is done, the benchmark for the design will be: Add support for point grouping by day of week
-    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -40,8 +35,9 @@ namespace Website.Controllers
                 );
 
             IPointGrouping<Sale> salePointGrouping =
-                pointGrouping == "byMonth" ? (IPointGrouping<Sale>)new GroupByMonth<Sale>(lineGrouping) :
-                pointGrouping == "byWeek" ? new GroupByWeek<Sale>(lineGrouping) :
+                pointGrouping == "byMonth" ? new GroupByMonth<Sale>(lineGrouping) :
+                pointGrouping == "byWeek" ? (IPointGrouping<Sale>)new GroupByWeek<Sale>(lineGrouping) :
+                pointGrouping == "byDayOfWeek" ? new GroupByDayOfWeek<Sale>(lineGrouping) :
                 throw new Exception($"Unsupported value {pointGrouping}");
 
             IValueGrouping saleValueGrouping =

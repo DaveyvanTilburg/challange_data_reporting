@@ -16,12 +16,15 @@ namespace Domain.UnitTests.PointGrouping
                     new MockedLineGrouping()
                 );
 
-            IEnumerable<LinePointsGroup<Sale>> pointGroups = subject.PointGroups();
+            IEnumerable<LinePointsGroup<Sale>> linePointGroups = subject.LinePointGroups();
 
-            pointGroups.Count().Should().Be(1);
+            linePointGroups.Count().Should().Be(1);
             
-            pointGroups.ElementAt(0).Type().Should().Be("Glasses");
-            pointGroups.ElementAt(0).Data().Count().Should().Be(13);
+            linePointGroups.ElementAt(0).Type().Should().Be("Glasses");
+            linePointGroups.ElementAt(0).Data().Count().Should().Be(13);
+
+            linePointGroups.ElementAt(0).Data().ElementAt(0).Data().Count().Should().Be(2);
+            linePointGroups.ElementAt(0).Data().ElementAt(12).Data().Count().Should().Be(1);
         }
 
         [Fact]
@@ -31,16 +34,34 @@ namespace Domain.UnitTests.PointGrouping
                 new MockedLineGrouping()
             );
 
-            IEnumerable<LinePointsGroup<Sale>> pointGroups = subject.PointGroups();
+            IEnumerable<LinePointsGroup<Sale>> linePointGroups = subject.LinePointGroups();
 
-            pointGroups.Count().Should().Be(1);
+            linePointGroups.Count().Should().Be(1);
 
-            pointGroups.ElementAt(0).Type().Should().Be("Glasses");
-            pointGroups.ElementAt(0).Data().Count().Should().Be(53);
+            linePointGroups.ElementAt(0).Type().Should().Be("Glasses");
+            linePointGroups.ElementAt(0).Data().Count().Should().Be(53);
 
-            pointGroups.ElementAt(0).Data().ElementAt(0).Data().Count().Should().Be(1);
-            pointGroups.ElementAt(0).Data().ElementAt(1).Data().Count().Should().Be(1);
-            pointGroups.ElementAt(0).Data().ElementAt(52).Data().Count().Should().Be(1);
+            linePointGroups.ElementAt(0).Data().ElementAt(0).Data().Count().Should().Be(1);
+            linePointGroups.ElementAt(0).Data().ElementAt(1).Data().Count().Should().Be(1);
+            linePointGroups.ElementAt(0).Data().ElementAt(52).Data().Count().Should().Be(1);
+        }
+
+        [Fact]
+        public void GroupByDayOfWeek()
+        {
+            var subject = new GroupByDayOfWeek<Sale>(
+                new MockedLineGrouping()
+            );
+
+            IEnumerable<LinePointsGroup<Sale>> linePointGroups = subject.LinePointGroups();
+
+            linePointGroups.Count().Should().Be(1);
+
+            linePointGroups.ElementAt(0).Type().Should().Be("Glasses");
+            linePointGroups.ElementAt(0).Data().Count().Should().Be(7);
+
+            linePointGroups.ElementAt(0).Data().ElementAt(1).Data().Count().Should().Be(2);
+            linePointGroups.ElementAt(0).Data().ElementAt(2).Data().Count().Should().Be(1);
         }
     }
 }

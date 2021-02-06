@@ -16,7 +16,7 @@ namespace Domain.ValueGrouping
 
         public Chart Chart()
         {
-            IEnumerable<LinePointsGroup<Sale>> input = _pointGrouping.PointGroups();
+            IEnumerable<LinePointsGroup<Sale>> input = _pointGrouping.LinePointGroups();
             var chart = new Chart(ChartLines(input), PointCategories(input), Title());
             
             return chart;

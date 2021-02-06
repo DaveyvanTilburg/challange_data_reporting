@@ -6,7 +6,7 @@ namespace Domain.UnitTests.ValueGrouping
 {
     internal class MockedPointGrouping : IPointGrouping<Sale>
     {
-        public IEnumerable<LinePointsGroup<Sale>> PointGroups()
+        public IEnumerable<LinePointsGroup<Sale>> LinePointGroups()
         {
             var retrievers = new PointGroup<Sale>("Retrievers");
             retrievers.Add(new Sale("\"Golden\";\"2.000,00\";4;\"2018-01-01\""));

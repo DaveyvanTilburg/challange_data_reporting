@@ -13,7 +13,7 @@ namespace Domain.PointGrouping
             _lineGrouping = lineGrouping;
         }
 
-        public IEnumerable<LinePointsGroup<T>> PointGroups()
+        public IEnumerable<LinePointsGroup<T>> LinePointGroups()
         {
             IEnumerable<LineGroup<T>> input = _lineGrouping.LineGroups();
             IEnumerable<string> linePoints = LinePoints(input);
