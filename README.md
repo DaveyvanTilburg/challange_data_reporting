@@ -6,7 +6,7 @@ This project is created in response to a challenge where you have to solve a pro
  - From a data source ([data](Infrastructure/MockedData/sales.csv) supplied in csv) create an overview per month that shows the performance of a product.
  - Vertical axis is 'value' and horizontal axis is time
  
-### Self introduced goal: I don't really understand what "performance" means, so I wish to introduce something myself:
+### Self introduced goal: I don't really understand what "performence" means, so I wish to introduce something myself: (in retrospect, after having talked with the 'challengers', they said it was part of the challenge to see if I would ask questions to remove this ambiguity, which I did not and I feel kind of stupid for that. I took the challenge 'less serious' and saw opportunity in this ambiguity to make it fun, of course I would not act in such a way 'on the job' because then I am not doing a project for my own enjoyment, but for the benefit of someone else. You live, you learn)
  - Make the chart period size variable (week/month)
  - Create chart of total value per unit type sold that period
  - Create chart of average value per unit sold that period
